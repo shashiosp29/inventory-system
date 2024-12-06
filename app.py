@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 import sqlite3
 
 app = Flask(__name__)
@@ -45,4 +45,14 @@ def update_item(item_id):
 
 @app.route('/api/items/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
-    
+
+@app.route('/', defaults={'path': 'index.html'})
+@app.route('/<path:path>')
+def serve_client(path):
+    return send_from_directory('client', path)
+
+
+
+
+if __name__ == '__main__':
+  app.run(debug=True)

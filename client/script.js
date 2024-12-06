@@ -22,3 +22,23 @@ function fetchItems() {
 
 }
 
+function addItem() {
+    const itemName = document.getElementById('itemName').value;
+    const itemQuantity = parseInt(document.getElementById('itemQuantity').value, 10);
+
+
+    fetch('/api/items', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: itemName, quantity: itemQuantity })
+    })
+        .then(() => {
+            fetchItems();
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemQuantity').value = 0;
+        })
+        .catch(error => console.error("Error adding item:", error));
+}
+

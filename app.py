@@ -31,6 +31,10 @@ create_table()
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

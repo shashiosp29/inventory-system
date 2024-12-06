@@ -39,3 +39,10 @@ def add_item():
 if __name__ == '__main__':
     app.run(debug=True)
 
+@app.route('/api/items/<int:item_id>', methods=['PUT'])
+def update_item(item_id):
+    data = request.get_json()
+
+@app.route('/api/items/<int:item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    
